@@ -4,12 +4,12 @@
 \alias{f_years2}
 \title{f_years2 - Sorts the flow data per years - Each year is a column}
 \usage{
-f_years2(First_day, Last_day)
+f_years2(First_year, Last_year)
 }
 \arguments{
-\item{First_day}{First day of the year to consider in the analysis starting on October 1st written as character (e.g. "1964-10-01")}
+\item{First_year}{First year to consider in the analysis starting on October 1st (e.g.: First_year = 1964)}
 
-\item{Last_day}{First day of the year to consider in the analysis finishing on September 30th written as character (e.g. "2011-09-30")}
+\item{Last_year}{First year to consider in the analysis finishing on September 30th (e.g.: Last_year = 2011)}
 }
 \value{
 The transformed dataframe per year is ready for calculations

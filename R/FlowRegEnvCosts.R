@@ -2,7 +2,7 @@
 #' @param  S_Day Position in Date string of the first digit of two-digits day
 #' @param  S_Month Position in Date string of the first digits of two-digits month
 #' @param  S_Year Position in Date string of the first digits of four-digits year
-#' @return The transformed dataframe on a daily basis is ready for calculations
+#' @return The transformed dataframe on a daily basis sohuld now be ready for calculations
 #' @export
 f_structure_date1 <-function(S_Day,S_Month,S_Year){
   Ye <- substr(data0$Date, start = S_Year, stop = (S_Year+3))
@@ -19,11 +19,13 @@ f_structure_date1 <-function(S_Day,S_Month,S_Year){
 
 
 #' f_years2 - Sorts the flow data per years - Each year is a column
-#' @param  First_day First day of the year to consider in the analysis starting on October 1st written as character (e.g. "1964-10-01")
-#' @param  Last_day First day of the year to consider in the analysis finishing on September 30th written as character (e.g. "2011-09-30")
+#' @param  First_year First year to consider in the analysis starting on October 1st (e.g.: First_year = 1964)
+#' @param  Last_year First year to consider in the analysis finishing on September 30th (e.g.: Last_year = 2011)
 #' @return The transformed dataframe per year is ready for calculations
 #' @export
-f_years2 <- function(First_day,Last_day){
+f_years2 <- function(First_year,Last_year){
+  First_day <- paste(First_year,"-10-01", sep="")
+  Last_day <- paste(Last_year,"-09-30", sep="")
   Date_col <- seq(as.Date("2011-10-01"), as.Date("2012-09-30"), by="days")
   Date <- seq(as.Date(First_day), as.Date(Last_day), by="days")
   Flow_adj <- subset(data0, (Date>=First_day)&(Date<=Last_day), select="Flow")
@@ -49,15 +51,17 @@ f_years2 <- function(First_day,Last_day){
 
 
 #' f_summary_flow3 - Provides a summary of flow data during the pre-impact period
-#' @param  First_day First day of the year to consider in the analysis starting on October 1st written as character (e.g. "1964-10-01")
-#' @param  Last_day First day of the year to consider in the analysis finishing on September 30th written as character (e.g. "2011-09-30")
-#' @param  Year_impact Year when the human impact started (e.g. the construction of a dam)
+#' @param  First_year First year to consider in the analysis starting on October 1st (e.g.: First_year = 1964)
+#' @param  Last_year First year to consider in the analysis finishing on September 30th (e.g.: Last_year = 2011)
+#' @param  Year_impact Year when the human impact started (the construction of a dam) (e.g.: Year_impact = 1988)
 #' @return Provides a dataframe on a daily basis of mean, min, p10, p25, median, p75, p90 and max values during the pre-impact period.
 #' @export
-f_summary_flow3 <- function(First_day, Last_day, Year_impact){
+f_summary_flow3 <- function(First_year, Last_year, Year_impact){
+  First_day <- paste(First_year,"-10-01", sep="")
+  Last_day <- paste(Last_year,"-09-30", sep="")
   Years0 <- seq(as.numeric(substr(First_day, start = 1, stop = 4))+1, as.numeric(substr(Last_day, start = 1, stop = 4)))
   Date_col <- seq(as.Date("2011-10-01"), as.Date("2012-09-30"), by="days")
-  my_mx1_0 <- f_years2(First_day=First_day,Last_day=Last_day)
+  my_mx1_0 <- f_years2(First_year=First_year,Last_year=Last_year)
   my_mx1 <- my_mx1_0[,2:ncol(my_mx1_0)]
   ##summary of daily data of flows
   means<- rowMeans(my_mx1, na.rm = TRUE)
@@ -81,16 +85,18 @@ f_summary_flow3 <- function(First_day, Last_day, Year_impact){
 
 
 #' f_adm_range4 - Calculates the admissible range of flow variability
-#' @param  First_day First day of the year to consider in the analysis starting on October 1st written as character (e.g. "1964-10-01")
-#' @param  Last_day First day of the year to consider in the analysis finishing on September 30th written as character (e.g. "2011-09-30")
-#' @param  Year_impact Year when the human impact started (e.g. the construction of a dam)
+#' @param  First_year First year to consider in the analysis starting on October 1st (e.g.: First_year = 1964)
+#' @param  Last_year First year to consider in the analysis finishing on September 30th (e.g.: Last_year = 2011)
+#' @param  Year_impact Year when the human impact started (the construction of a dam) (e.g.: Year_impact = 1988)
 #' @return Calculates the admissible range of flow variability based on the flow data during the pre-impact period.
 #' @export
-f_adm_range4 <- function(First_day, Last_day, Year_impact){
+f_adm_range4 <- function(First_year, Last_year, Year_impact){
+  First_day <- paste(First_year,"-10-01", sep="")
+  Last_day <- paste(Last_year,"-09-30", sep="")
   Years0 <- seq(as.numeric(substr(First_day, start = 1, stop = 4))+1, as.numeric(substr(Last_day, start = 1, stop = 4)))
-  my_mx1_0 <- f_years2(First_day=First_day,Last_day=Last_day)
+  my_mx1_0 <- f_years2(First_year=First_year,Last_year=Last_year)
   my_mx1 <- my_mx1_0[,2:ncol(my_mx1_0)]
-  daily_summary_ref_years_0 <- f_summary_flow3(First_day=First_day,Last_day=Last_day,Year_impact=Year_impact)
+  daily_summary_ref_years_0 <- f_summary_flow3(First_year=First_year,Last_year=Last_year,Year_impact=Year_impact)
   daily_summary_ref_years <- daily_summary_ref_years_0[,2:ncol(daily_summary_ref_years_0)]
   Date <- seq(as.Date("1999-10-01"), as.Date("2000-09-30"), by="days")
   daily_summary_ref <- cbind(Date, daily_summary_ref_years)
@@ -146,18 +152,19 @@ f_adm_range4 <- function(First_day, Last_day, Year_impact){
 
 
 #' f_plot_adm_range4 - Plots the admissible range of flow variability
-#' @param  River_name Name of the river as character (e.g. "Ebro")
-#' @param  First_day First day of the year to consider in the analysis starting on October 1st written as character (e.g. "1964-10-01")
-#' @param  Last_day First day of the year to consider in the analysis finishing on September 30th written as character (e.g. "2011-09-30")
-#' @param  Year_impact Year when the human impact started (e.g. the construction of a dam)
+#' @param  River_name Name of the river as character (e.g.: River_name = "Ebro")
+#' @param  First_year First year to consider in the analysis starting on October 1st (e.g.: First_year = 1964)
+#' @param  Last_year First year to consider in the analysis finishing on September 30th (e.g.: Last_year = 2011)
+#' @param  Year_impact Year when the human impact started (the construction of a dam) (e.g.: Year_impact = 1988)
 #' @return Plots the admissible range of flow variability based on the flow data during the pre-impact period.
 #' @export
-f_plot_adm_range4 <- function(River_name, First_day, Last_day, Year_impact){
-
+f_plot_adm_range4 <- function(River_name, First_year, Last_year, Year_impact){
+  First_day <- paste(First_year,"-10-01", sep="")
+  Last_day <- paste(Last_year,"-09-30", sep="")
   Years0 <- seq(as.numeric(substr(First_day, start = 1, stop = 4))+1, as.numeric(substr(Last_day, start = 1, stop = 4)))
-  my_mx1_0 <- f_years2(First_day=First_day,Last_day=Last_day)
+  my_mx1_0 <- f_years2(First_year=First_year,Last_year=Last_year)
   my_mx1 <- my_mx1_0[,2:ncol(my_mx1_0)]
-  daily_summary_ref_years_0 <- f_summary_flow3(First_day=First_day,Last_day=Last_day,Year_impact=Year_impact)
+  daily_summary_ref_years_0 <- f_summary_flow3(First_year=First_year,Last_year=Last_year,Year_impact=Year_impact)
   daily_summary_ref_years <- daily_summary_ref_years_0[,2:ncol(daily_summary_ref_years_0)]
   Date <- seq(as.Date("1999-10-01"), as.Date("2000-09-30"), by="days")
   daily_summary_ref <- cbind(Date, daily_summary_ref_years)
@@ -235,14 +242,16 @@ f_plot_adm_range4 <- function(River_name, First_day, Last_day, Year_impact){
 
 
 #' f_impact5 - Calculates the daily environmental impact of flow regulation (high- and low-flow impact)
-#' @param  First_day First day of the year to consider in the analysis starting on October 1st written as character (e.g. "1964-10-01")
-#' @param  Last_day First day of the year to consider in the analysis finishing on September 30th written as character (e.g. "2011-09-30")
-#' @param  Year_evaluated Year when the environmental impact is evaluated
-#' @param  Year_impact Year when the human impact started (e.g. the construction of a dam)
+#' @param  First_year First year to consider in the analysis starting on October 1st (e.g.: First_year = 1964)
+#' @param  Last_year First year to consider in the analysis finishing on September 30th (e.g.: Last_year = 2011)
+#' @param  Year_evaluated Year when the environmental impact is evaluated (e.g.: Year_evaluated = 2010)
+#' @param  Year_impact Year when the human impact started (the construction of a dam) (e.g.: Year_impact = 1988)
 #' @return Calculates the daily environmental impact of flow regulation (high- and low-flow impact).
 #' @export
-f_impact5 <- function(First_day, Last_day,Year_evaluated,Year_impact){
-  my_mx1_0 <- f_years2(First_day=First_day,Last_day=Last_day)
+f_impact5 <- function(First_year, Last_year,Year_evaluated,Year_impact){
+  First_day <- paste(First_year,"-10-01", sep="")
+  Last_day <- paste(Last_year,"-09-30", sep="")
+  my_mx1_0 <- f_years2(First_year=First_year,Last_year=Last_year)
   my_mx1 <- my_mx1_0[,2:ncol(my_mx1_0)]
   Date <- seq(as.Date("1999-10-01"), as.Date("2000-09-30"), by="days")
   all_years <- cbind(Date, my_mx1)
@@ -262,7 +271,8 @@ f_impact5 <- function(First_day, Last_day,Year_evaluated,Year_impact){
   ## 30 days
   q_year_evaluated_30days <- c(q_year_evaluated[352:366], q_year_evaluated,q_year_evaluated[1:14])
   q_year_evaluated_30day <- rollapply(q_year_evaluated_30days, 30,median,na.rm=TRUE)
-  adm_range <- f_adm_range4 (First_day=First_day, Last_day=Last_day,Year_impact=Year_impact)
+
+  adm_range <- f_adm_range4 (First_year=First_year, Last_year=Last_year,Year_impact=Year_impact)
   Flow_p10_30day <- adm_range$Smoothed_ref_Low
   Flow_p90_30day <- adm_range$Smoothed_ref_High
   ###### Environmental Impact
@@ -379,6 +389,7 @@ f_impact5 <- function(First_day, Last_day,Year_evaluated,Year_impact){
   Impact_High <- rowMeans(Imp_year_evaluated_high)
   Impact_Low <- rowMeans(Imp_year_evaluated_low)
   Impact_Total <- rowMeans(impact_total)
+
   Impacts <- data.frame(Date=substr(Date, start = 6, stop = 11), Impact_Low=Impact_Low, Impact_High=Impact_High, Impact_Total=Impact_Total)
   return(Impacts)
 }
@@ -386,19 +397,21 @@ f_impact5 <- function(First_day, Last_day,Year_evaluated,Year_impact){
 
 
 #' f_plot_impact5 - Plots the daily environmental impact of flow regulation (high- and low-flow impact)
-#' @param  River_name Name of the river written as character (e.g. "Ebro")
-#' @param  First_day First day of the year to consider in the analysis starting on October 1st written as character (e.g. "1964-10-01")
-#' @param  Last_day First day of the year to consider in the analysis finishing on September 30th written as character (e.g. "2011-09-30")
-#' @param  Year_evaluated Year when the environmental impact is evaluated
-#' @param  Year_impact Year when the human impact started (e.g. the construction of a dam)
+#' @param  River_name Name of the river written as character (e.g.: River_name = "Ebro")
+#' @param  First_year First year to consider in the analysis starting on October 1st (e.g.: First_year = 1964)
+#' @param  Last_year First year to consider in the analysis finishing on September 30th (e.g.: Last_year = 2011)
+#' @param  Year_evaluated Year when the environmental impact is evaluated (e.g.: Year_evaluated = 2010)
+#' @param  Year_impact Year when the human impact started (the construction of a dam) (e.g.: Year_impact = 1988)
 #' @return Plots the daily environmental impact of flow regulation (high- and low-flow impact).
 #' @export
-f_plot_impact5 <- function(River_name,First_day, Last_day,Year_evaluated, Year_impact){
-  my_mx1_0 <- f_years2(First_day=First_day,Last_day=Last_day)
+f_plot_impact5 <- function(River_name,First_year, Last_year,Year_evaluated, Year_impact){
+  First_day <- paste(First_year,"-10-01", sep="")
+  Last_day <- paste(Last_year,"-09-30", sep="")
+  my_mx1_0 <- f_years2(First_year=First_year,Last_year=Last_year)
   my_mx1 <- my_mx1_0[,2:ncol(my_mx1_0)]
   Date <- seq(as.Date("1999-10-01"), as.Date("2000-09-30"), by="days")
   all_years <- cbind(Date, my_mx1)
-  adm_range <- f_adm_range4 (First_day=First_day, Last_day=Last_day,Year_impact=Year_impact)
+  adm_range <- f_adm_range4 (First_year=First_year, Last_year=Last_year,Year_impact=Year_impact)
   Flow_p10_30day <- adm_range$Smoothed_ref_Low
   Flow_p90_30day <- adm_range$Smoothed_ref_High
   q_ref_high <- adm_range$High_ref_flow
@@ -561,18 +574,20 @@ f_plot_impact5 <- function(River_name,First_day, Last_day,Year_evaluated, Year_i
 
 
 #' f_daily_costs6 - Calculates the daily environmental costs of flow regulation
-#' @param  First_day First day of the year to consider in the analysis starting on October 1st written as character (e.g. "1964-10-01")
-#' @param  Last_day First day of the year to consider in the analysis finishing on September 30th written as character (e.g. "2011-09-30")
-#' @param  Year_evaluated Year when the environmental impact is evaluated
-#' @param  Year_impact Year when the human impact started (e.g. the construction of a dam)
-#' @param  a_low Coefficient a of Low-flow impact of function ku (e.g. 0.05)
-#' @param  a_high Coefficient a of High-flow impact of function ku (e.g. 0.01)
-#' @param  b_low Coefficient b of Low-flow impact of function ku (e.g. 2)
-#' @param  b_high Coefficient b of High-flow impact of function ku (e.g. 2)
+#' @param  First_year First year to consider in the analysis starting on October 1st (e.g.: First_year = 1964)
+#' @param  Last_year First year to consider in the analysis finishing on September 30th (e.g.: Last_year = 2011)
+#' @param  Year_evaluated Year when the environmental impact is evaluated (e.g.: Year_evaluated = 2010)
+#' @param  Year_impact Year when the human impact started (the construction of a dam) (e.g.: Year_impact = 1988)
+#' @param  a_low Coefficient a of Low-flow impact of function ku (e.g.: a_low = 0.05)
+#' @param  a_high Coefficient a of High-flow impact of function ku (e.g.: a_high = 0.01)
+#' @param  b_low Coefficient b of Low-flow impact of function ku (e.g.: b_low = 2)
+#' @param  b_high Coefficient b of High-flow impact of function ku (e.g.: b_high = 2)
 #' @return Calculates the daily environmental costs of flow regulation for a specific year evaluated.
 #' @export
-f_daily_costs6 <- function(First_day, Last_day,Year_evaluated, Year_impact,a_low, a_high,b_low, b_high){
-  Impacts <- f_impact5(First_day=First_day, Last_day=Last_day,Year_evaluated=Year_evaluated, Year_impact=Year_impact)
+f_daily_costs6 <- function(First_year, Last_year,Year_evaluated, Year_impact,a_low, a_high,b_low, b_high){
+  First_day <- paste(First_year,"-10-01", sep="")
+  Last_day <- paste(Last_year,"-09-30", sep="")
+  Impacts <- f_impact5(First_year=First_year, Last_year=Last_year,Year_evaluated=Year_evaluated, Year_impact=Year_impact)
   Impact_Low <- Impacts$Impact_Low
   Impact_High <- Impacts$Impact_High
   Impact_Total <- Impacts$Impact_Total
@@ -591,19 +606,21 @@ f_daily_costs6 <- function(First_day, Last_day,Year_evaluated, Year_impact,a_low
 
 
 #' f_daily_costs_plot6 - Plots the daily environmental costs of flow regulation
-#' @param  River_name Name of the river written as character (e.g. "Ebro")
-#' @param  First_day First day of the year to consider in the analysis starting on October 1st written as character (e.g. "1964-10-01")
-#' @param  Last_day First day of the year to consider in the analysis finishing on September 30th written as character (e.g. "2011-09-30")
-#' @param  Year_evaluated Year when the environmental impact is evaluated
-#' @param  Year_impact Year when the human impact started (e.g. the construction of a dam)
-#' @param  a_low Coefficient a of Low-flow impact of function ku (e.g. 0.05)
-#' @param  a_high Coefficient a of High-flow impact of function ku (e.g. 0.01)
-#' @param  b_low Coefficient b of Low-flow impact of function ku (e.g. 2)
-#' @param  b_high Coefficient b of High-flow impact of function ku (e.g. 2)
+#' @param  River_name Name of the river written as character (e.g.: River_name = "Ebro")
+#' @param  First_year First year to consider in the analysis starting on October 1st (e.g.: First_year = 1964)
+#' @param  Last_year First year to consider in the analysis finishing on September 30th (e.g.: Last_year = 2011)
+#' @param  Year_evaluated Year when the environmental impact is evaluated (e.g.: Year_evaluated = 2010)
+#' @param  Year_impact Year when the human impact started (the construction of a dam) (e.g.: Year_impact = 1988)
+#' @param  a_low Coefficient a of Low-flow impact of function ku (e.g.: a_low = 0.05)
+#' @param  a_high Coefficient a of High-flow impact of function ku (e.g.: a_high = 0.01)
+#' @param  b_low Coefficient b of Low-flow impact of function ku (e.g.: b_low = 2)
+#' @param  b_high Coefficient b of High-flow impact of function ku (e.g.: b_high = 2)
 #' @return Plots the daily environmental costs of flow regulation for a specific year evaluated.
 #' @export
-f_daily_costs_plot6 <- function(River_name, First_day, Last_day,Year_evaluated, Year_impact,a_low, a_high,b_low, b_high){
-  Impacts <- f_impact5(First_day=First_day, Last_day=Last_day,Year_evaluated=Year_evaluated, Year_impact=Year_impact)
+f_daily_costs_plot6 <- function(River_name, First_year, Last_year,Year_evaluated, Year_impact,a_low, a_high,b_low, b_high){
+  First_day <- paste(First_year,"-10-01", sep="")
+  Last_day <- paste(Last_year,"-09-30", sep="")
+  Impacts <- f_impact5(First_year=First_year, Last_year=Last_year,Year_evaluated=Year_evaluated, Year_impact=Year_impact)
   Impact_Low <- Impacts$Impact_Low
   Impact_High <- Impacts$Impact_High
   Impact_Total <- Impacts$Impact_Total
@@ -635,4 +652,207 @@ f_daily_costs_plot6 <- function(River_name, First_day, Last_day,Year_evaluated, 
   axis(1, lwd=1, at=274+15, labels="Jul")
   axis(1, lwd=1, at=305+15, labels="Aug")
   axis(1, lwd=1, at=336+15, labels="Sep")
+}
+
+
+
+#' f_multi_plot_impact5 - Plots the daily environmental impact of flow regulation for multiple years
+#' @param  River_name Name of the river written as character (e.g.: River_name = "Ebro")
+#' @param  First_year First year to consider in the analysis starting on October 1st (e.g.: First_year = 1964)
+#' @param  Last_year First year to consider in the analysis finishing on September 30th (e.g.: Last_year = 2011)
+#' @param  Year_evaluated Year when the environmental impact is evaluated (e.g.: Year_evaluated = 2010)
+#' @param  Year_impact Year when the human impact started (the construction of a dam) (e.g.: Year_impact = 1988)
+#' @param  x_coef A coeficient to change the font size in the graphs proportionally to the number of graphs plotted (e.g.: x_coef = 0.8)
+#' @return Plots the daily environmental impact of flow regulation for multiple years.
+#' @export
+f_multi_plot_impact5 <- function(River_name,First_year, Last_year,Year_evaluated, Year_impact,x_coef){
+  First_day <- paste(First_year,"-10-01", sep="")
+  Last_day <- paste(Last_year,"-09-30", sep="")
+  my_mx1_0 <- f_years2(First_year=First_year,Last_year=Last_year)
+  my_mx1 <- my_mx1_0[,2:ncol(my_mx1_0)]
+  Date <- seq(as.Date("1999-10-01"), as.Date("2000-09-30"), by="days")
+  all_years <- cbind(Date, my_mx1)
+  adm_range <- f_adm_range4 (First_year=First_year, Last_year=Last_year,Year_impact=Year_impact)
+  Flow_p10_30day <- adm_range$Smoothed_ref_Low
+  Flow_p90_30day <- adm_range$Smoothed_ref_High
+  q_ref_high <- adm_range$High_ref_flow
+  q_ref_low <- adm_range$Low_ref_flow
+  ## Layouts
+  t_secs_1_day <- 1 # 8=86400(sec/dia)
+  t_days_1_year <- 366 # 3=366(dias)
+  layouts <- t_days_1_year * t_secs_1_day
+  #Flow (m3/s) AFTER impact (eg. 2010)
+  q_year_evaluated <- c(all_years[,paste("Y",Year_evaluated, sep="")])
+  ## 3 days
+  q_year_evaluated_3days <- c(q_year_evaluated[366], q_year_evaluated,q_year_evaluated[1])
+  q_year_evaluated_3day <- rollapply(q_year_evaluated_3days, 3,median,na.rm=TRUE)
+  ## 7 days
+  q_year_evaluated_7days <- c(q_year_evaluated[364:366], q_year_evaluated,q_year_evaluated[1:3])
+  q_year_evaluated_7day <- rollapply(q_year_evaluated_7days, 7,median,na.rm=TRUE)
+  ## 30 days
+  q_year_evaluated_30days <- c(q_year_evaluated[352:366], q_year_evaluated,q_year_evaluated[1:14])
+  q_year_evaluated_30day <- rollapply(q_year_evaluated_30days, 30,median,na.rm=TRUE)
+  ###### Environmental Impact
+  #Impact low flows
+  ## 1 day low flow
+  Imp_year_evaluated_low_1d <- rep(0, layouts)
+  for(i in 1:length(Imp_year_evaluated_low_1d)){
+    if(is.na(q_year_evaluated[i])){
+      Imp_year_evaluated_low_1d[i] <- NA
+    } else {
+      if (q_year_evaluated[i]< Flow_p10_30day[i]){
+        Imp_year_evaluated_low_1d[i] <- (Flow_p10_30day[i]- q_year_evaluated[i])/(Flow_p10_30day[i])
+      } else{
+        Imp_year_evaluated_low_1d[i] <- 0
+      }
+    }
+  }
+  ## 3 days low flow
+  Imp_year_evaluated_low_3d <- rep(0, layouts)
+  for(i in 1:length(Imp_year_evaluated_low_3d)){
+    if(is.na(q_year_evaluated_3day[i])){
+      Imp_year_evaluated_low_3d[i] <- NA
+    } else {
+      if (q_year_evaluated_3day[i]< Flow_p10_30day[i]){
+        Imp_year_evaluated_low_3d[i] <- (Flow_p10_30day[i]- q_year_evaluated_3day[i])/(Flow_p10_30day[i])
+      } else{
+        Imp_year_evaluated_low_3d[i] <- 0
+      }
+    }
+  }
+  ## 7 days low flow
+  Imp_year_evaluated_low_7d <- rep(0, layouts)
+  for(i in 1:length(Imp_year_evaluated_low_7d)){
+    if(is.na(q_year_evaluated_7day[i])){
+      Imp_year_evaluated_low_7d[i] <- NA
+    } else {
+      if (q_year_evaluated_7day[i]< Flow_p10_30day[i]){
+        Imp_year_evaluated_low_7d[i] <- (Flow_p10_30day[i]- q_year_evaluated_7day[i])/(Flow_p10_30day[i])
+      } else{
+        Imp_year_evaluated_low_7d[i] <- 0
+      }
+    }
+  }
+  ## 30 days low flow
+  Imp_year_evaluated_low_30d <- rep(0, layouts)
+  for(i in 1:length(Imp_year_evaluated_low_30d)){
+    if(is.na(q_year_evaluated_30day[i])){
+      Imp_year_evaluated_low_30d[i] <- NA
+    } else {
+      if (q_year_evaluated_30day[i]< Flow_p10_30day[i]){
+        Imp_year_evaluated_low_30d[i] <- (Flow_p10_30day[i]- q_year_evaluated_30day[i])/(Flow_p10_30day[i])
+      } else{
+        Imp_year_evaluated_low_30d[i] <- 0
+      }
+    }
+  }
+  Imp_year_evaluated_low <- cbind(Imp_year_evaluated_low_1d,Imp_year_evaluated_low_3d,
+                                  Imp_year_evaluated_low_7d,Imp_year_evaluated_low_30d)
+  ## 1 day high flow
+  Imp_year_evaluated_high_1d <- rep(0, layouts)
+  for(i in 1:length(Imp_year_evaluated_high_1d)){
+    if(is.na(q_year_evaluated[i])){
+      Imp_year_evaluated_high_1d[i] <- NA
+    } else {
+      if (q_year_evaluated[i]> Flow_p90_30day[i]){
+        Imp_year_evaluated_high_1d[i] <- (-Flow_p90_30day[i]+ q_year_evaluated[i])/(q_year_evaluated[i])
+      } else{
+        Imp_year_evaluated_high_1d[i] <- 0
+      }
+    }
+  }
+  ## 3 days high flow
+  Imp_year_evaluated_high_3d <- rep(0, layouts)
+  for(i in 1:length(Imp_year_evaluated_high_3d)){
+    if(is.na(q_year_evaluated_3day[i])){
+      Imp_year_evaluated_high_3d[i] <- NA
+    } else {
+      if (q_year_evaluated_3day[i]> Flow_p90_30day[i]){
+        Imp_year_evaluated_high_3d[i] <- (-Flow_p90_30day[i]+ q_year_evaluated_3day[i])/(q_year_evaluated_3day[i])
+      } else{
+        Imp_year_evaluated_high_3d[i] <- 0
+      }
+    }
+  }
+  ## 7 days high flow
+  Imp_year_evaluated_high_7d <- rep(0, layouts)
+  for(i in 1:length(Imp_year_evaluated_high_7d)){
+    if(is.na(q_year_evaluated_7day[i])){
+      Imp_year_evaluated_high_7d[i] <- NA
+    } else {
+      if (q_year_evaluated_7day[i]> Flow_p90_30day[i]){
+        Imp_year_evaluated_high_7d[i] <- (-Flow_p90_30day[i]+ q_year_evaluated_7day[i])/(q_year_evaluated_7day[i])
+      } else{
+        Imp_year_evaluated_high_7d[i] <- 0
+      }
+    }
+  }
+  ## 30 days high flow
+  Imp_year_evaluated_high_30d <- rep(0, layouts)
+  for(i in 1:length(Imp_year_evaluated_high_30d)){
+    if(is.na(q_year_evaluated_30day[i])){
+      Imp_year_evaluated_high_30d[i] <- NA
+    } else {
+      if (q_year_evaluated_30day[i]> Flow_p90_30day[i]){
+        Imp_year_evaluated_high_30d[i] <- (-Flow_p90_30day[i]+ q_year_evaluated_30day[i])/(q_year_evaluated_30day[i])
+      } else{
+        Imp_year_evaluated_high_30d[i] <- 0
+      }
+    }
+  }
+  Imp_year_evaluated_high <- cbind(Imp_year_evaluated_high_1d,Imp_year_evaluated_high_3d,
+                                   Imp_year_evaluated_high_7d,Imp_year_evaluated_high_30d)
+  require(plotrix)
+  eje_x <- 1:366
+  par(mar=c(4,4,4,4))
+  plot(eje_x,q_year_evaluated, col=1, type="l",xaxt='n', ylab="", xlab="", ylim=c(0,max(q_year_evaluated,q_ref_high ,na.rm=T)*1.5),
+       xlim=c(0,366), cex.axis=(1*x_coef))#, yaxt="n")
+  mtext(side=2,line=2,expression('Flow (m '^3*'/s)'),cex=(1*x_coef*0.8))
+  x <- c(1:366,366:1)
+  poly_Flow_p90_p10_30day <- c(Flow_p90_30day,rev(Flow_p10_30day))
+  polygon(x, poly_Flow_p90_p10_30day, col = "gray", border = "gray")
+  lines(q_year_evaluated, col=1)
+  par(new=TRUE)
+  plot(eje_x, rowMeans(Imp_year_evaluated_low) ,,type="l", bty="n",xlab="",ylab="",col=2,
+       ylim=c(-7,2),xlim=c(0,366),axes = FALSE, yaxt="n") #,main=paste(River_name,"River - Impact in", Year_evaluated), cex.main=(1*x_coef))
+  lines(rowMeans(Imp_year_evaluated_high), col=4, lty=2)
+  mtext(side=3,line=1,paste(River_name,"River - Impact in", Year_evaluated), cex=(1*x_coef*0.8), font =2)
+  mtext(side=4,line=2,"Impact", cex=1*x_coef*0.8)
+  axis(1, lwd=1, at=0+15, labels="O", cex.axis=(1*x_coef))
+  axis(1, lwd=1, at=31+15, labels="N", cex.axis=(1*x_coef))
+  axis(1, lwd=1, at=61+15, labels="D", cex.axis=(1*x_coef))
+  axis(1, lwd=1, at=92+15, labels="J", cex.axis=(1*x_coef))
+  axis(1, lwd=1, at=123+15, labels="F", cex.axis=(1*x_coef))
+  axis(1, lwd=1, at=152+15, labels="M", cex.axis=(1*x_coef))
+  axis(1, lwd=1, at=183+15, labels="A", cex.axis=(1*x_coef))
+  axis(1, lwd=1, at=213+15, labels="M", cex.axis=(1*x_coef))
+  axis(1, lwd=1, at=244+15, labels="J", cex.axis=(1*x_coef))
+  axis(1, lwd=1, at=274+15, labels="J", cex.axis=(1*x_coef))
+  axis(1, lwd=1, at=305+15, labels="A", cex.axis=(1*x_coef))
+  axis(1, lwd=1, at=336+15, labels="S", cex.axis=(1*x_coef))
+  axis(4, lwd=1, at=0, labels="0", cex.axis=(1*x_coef))
+  axis(4, lwd=1, at=1, labels="1", cex.axis=(1*x_coef))
+}
+
+
+
+#' f_multi_plot_impact7 - Plots the daily environmental impact of flow regulation for multiple years
+#' @param  Row Number of rows in the figure to compare multiple years in separated graphs (e.g.:  Row = 2)
+#' @param  Column Number of columns in the figure to compare multiple years in separated graphs (e.g.:  Column = 5)
+#' @param  sp_years A vector specifying the years to be plotted (e.g.:  sp_years = c(1965,1966,1967,1968,1969,2006,2007,2008,2009,2010))
+#' @param  River_name Name of the river written as character (e.g.: River_name = "Ebro")
+#' @param  First_year First year to consider in the analysis starting on October 1st (e.g.: First_year = 1964)
+#' @param  Last_year First year to consider in the analysis finishing on September 30th (e.g.: Last_year = 2011)
+#' @param  Year_impact Year when the human impact started (the construction of a dam) (e.g.: Year_impact = 1988)
+#' @return Plots the daily environmental impact of flow regulation for multiple years.
+#' @export
+f_multi_plot_impact7 <- function(Row,Column, sp_years, River_name,First_year, Last_year, Year_impact) {
+  First_day <- paste(First_year,"-10-01", sep="")
+  Last_day <- paste(Last_year,"-09-30", sep="")
+  n_years <- length(sp_years)
+  par(mfrow=c(Row, Column))
+  x_coef <- -0.144* log(n_years) + 0.971
+  for(i in 1:length(sp_years)){
+    f_multi_plot_impact5(River_name = River_name,First_year=First_year, Last_year=Last_year,Year_evaluated=sp_years[i], Year_impact=Year_impact, x_coef=x_coef)
+  }
 }

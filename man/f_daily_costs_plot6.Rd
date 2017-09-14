@@ -4,27 +4,27 @@
 \alias{f_daily_costs_plot6}
 \title{f_daily_costs_plot6 - Plots the daily environmental costs of flow regulation}
 \usage{
-f_daily_costs_plot6(River_name, First_day, Last_day, Year_evaluated,
+f_daily_costs_plot6(River_name, First_year, Last_year, Year_evaluated,
   Year_impact, a_low, a_high, b_low, b_high)
 }
 \arguments{
-\item{River_name}{Name of the river written as character (e.g. "Ebro")}
+\item{River_name}{Name of the river written as character (e.g.: River_name = "Ebro")}
 
-\item{First_day}{First day of the year to consider in the analysis starting on October 1st written as character (e.g. "1964-10-01")}
+\item{First_year}{First year to consider in the analysis starting on October 1st (e.g.: First_year = 1964)}
 
-\item{Last_day}{First day of the year to consider in the analysis finishing on September 30th written as character (e.g. "2011-09-30")}
+\item{Last_year}{First year to consider in the analysis finishing on September 30th (e.g.: Last_year = 2011)}
 
-\item{Year_evaluated}{Year when the environmental impact is evaluated}
+\item{Year_evaluated}{Year when the environmental impact is evaluated (e.g.: Year_evaluated = 2010)}
 
-\item{Year_impact}{Year when the human impact started (e.g. the construction of a dam)}
+\item{Year_impact}{Year when the human impact started (the construction of a dam) (e.g.: Year_impact = 1988)}
 
-\item{a_low}{Coefficient a of Low-flow impact of function ku (e.g. 0.05)}
+\item{a_low}{Coefficient a of Low-flow impact of function ku (e.g.: a_low = 0.05)}
 
-\item{a_high}{Coefficient a of High-flow impact of function ku (e.g. 0.01)}
+\item{a_high}{Coefficient a of High-flow impact of function ku (e.g.: a_high = 0.01)}
 
-\item{b_low}{Coefficient b of Low-flow impact of function ku (e.g. 2)}
+\item{b_low}{Coefficient b of Low-flow impact of function ku (e.g.: b_low = 2)}
 
-\item{b_high}{Coefficient b of High-flow impact of function ku (e.g. 2)}
+\item{b_high}{Coefficient b of High-flow impact of function ku (e.g.: b_high = 2)}
 }
 \value{
 Plots the daily environmental costs of flow regulation for a specific year evaluated.

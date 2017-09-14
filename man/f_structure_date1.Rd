@@ -14,7 +14,7 @@ f_structure_date1(S_Day, S_Month, S_Year)
 \item{S_Year}{Position in Date string of the first digits of four-digits year}
 }
 \value{
-The transformed dataframe on a daily basis is ready for calculations
+The transformed dataframe on a daily basis sohuld now be ready for calculations
 }
 \description{
 f_structure_date1 - Transforms and reorders the flow data

@@ -4,16 +4,16 @@
 \alias{f_impact5}
 \title{f_impact5 - Calculates the daily environmental impact of flow regulation (high- and low-flow impact)}
 \usage{
-f_impact5(First_day, Last_day, Year_evaluated, Year_impact)
+f_impact5(First_year, Last_year, Year_evaluated, Year_impact)
 }
 \arguments{
-\item{First_day}{First day of the year to consider in the analysis starting on October 1st written as character (e.g. "1964-10-01")}
+\item{First_year}{First year to consider in the analysis starting on October 1st (e.g.: First_year = 1964)}
 
-\item{Last_day}{First day of the year to consider in the analysis finishing on September 30th written as character (e.g. "2011-09-30")}
+\item{Last_year}{First year to consider in the analysis finishing on September 30th (e.g.: Last_year = 2011)}
 
-\item{Year_evaluated}{Year when the environmental impact is evaluated}
+\item{Year_evaluated}{Year when the environmental impact is evaluated (e.g.: Year_evaluated = 2010)}
 
-\item{Year_impact}{Year when the human impact started (e.g. the construction of a dam)}
+\item{Year_impact}{Year when the human impact started (the construction of a dam) (e.g.: Year_impact = 1988)}
 }
 \value{
 Calculates the daily environmental impact of flow regulation (high- and low-flow impact).

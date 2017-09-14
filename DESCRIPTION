@@ -2,8 +2,8 @@ Package: FlowRegEnvCost
 Type: Package
 Title: The environmental costs of flow regulaation
 Version: 0.1.0
-Author: Silvestre García de Jalón <silvestre.garciadejalon@bc3research.org>
-Maintainer: Silvestre García de Jalón <silvestre.garciadejalon@bc3research.org>
+Author: Silvestre García de Jalón <silvestre.garciadejalon@bc3research.org>; Javier Martínez-López <javier.martinez@bc3research.org>
+Maintainer: Silvestre García de Jalón <silvestre.garciadejalon@bc3research.org>; Javier Martínez-López <javier.martinez@bc3research.org>
 Description: An application to calculate the daily environmental costs of flow regulation
     Use four spaces when indenting paragraphs within the Description.
 License: What license is it under?
