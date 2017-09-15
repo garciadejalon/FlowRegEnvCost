@@ -2,7 +2,7 @@
 % Please edit documentation in R/FlowRegEnvCosts.R
 \name{f_structure_date1}
 \alias{f_structure_date1}
-\title{f_structure_date1 - Transforms and reorders the flow data}
+\title{Transforms and reorders the flow data}
 \usage{
 f_structure_date1(S_Day, S_Month, S_Year)
 }
@@ -17,5 +17,5 @@ f_structure_date1(S_Day, S_Month, S_Year)
 The transformed dataframe on a daily basis sohuld now be ready for calculations
 }
 \description{
-f_structure_date1 - Transforms and reorders the flow data
+Transforms and reorders the flow data
 }

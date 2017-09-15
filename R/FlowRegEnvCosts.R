@@ -1,4 +1,4 @@
-#' f_structure_date1 - Transforms and reorders the flow data
+#' Transforms and reorders the flow data
 #' @param  S_Day Position in Date string of the first digit of two-digits day
 #' @param  S_Month Position in Date string of the first digits of two-digits month
 #' @param  S_Year Position in Date string of the first digits of four-digits year
@@ -18,7 +18,7 @@ f_structure_date1 <-function(S_Day,S_Month,S_Year){
 }
 
 
-#' f_years2 - Sorts the flow data per years - Each year is a column
+#' Sorts the flow data per years - Each year is a column
 #' @param  First_year First year to consider in the analysis starting on October 1st (e.g.: First_year = 1964)
 #' @param  Last_year First year to consider in the analysis finishing on September 30th (e.g.: Last_year = 2011)
 #' @return The transformed dataframe per year is ready for calculations
@@ -50,7 +50,7 @@ f_years2 <- function(First_year,Last_year){
 }
 
 
-#' f_summary_flow3 - Provides a summary of flow data during the pre-impact period
+#' Provides a summary of flow data during the pre-impact period
 #' @param  First_year First year to consider in the analysis starting on October 1st (e.g.: First_year = 1964)
 #' @param  Last_year First year to consider in the analysis finishing on September 30th (e.g.: Last_year = 2011)
 #' @param  Year_impact Year when the human impact started (the construction of a dam) (e.g.: Year_impact = 1988)
@@ -84,7 +84,7 @@ f_summary_flow3 <- function(First_year, Last_year, Year_impact){
 
 
 
-#' f_adm_range4 - Calculates the admissible range of flow variability
+#' Calculates the admissible range of flow variability
 #' @param  First_year First year to consider in the analysis starting on October 1st (e.g.: First_year = 1964)
 #' @param  Last_year First year to consider in the analysis finishing on September 30th (e.g.: Last_year = 2011)
 #' @param  Year_impact Year when the human impact started (the construction of a dam) (e.g.: Year_impact = 1988)
@@ -151,7 +151,7 @@ f_adm_range4 <- function(First_year, Last_year, Year_impact){
 }
 
 
-#' f_plot_adm_range4 - Plots the admissible range of flow variability
+#' Plots the admissible range of flow variability
 #' @param  River_name Name of the river as character (e.g.: River_name = "Ebro")
 #' @param  First_year First year to consider in the analysis starting on October 1st (e.g.: First_year = 1964)
 #' @param  Last_year First year to consider in the analysis finishing on September 30th (e.g.: Last_year = 2011)
@@ -241,7 +241,7 @@ f_plot_adm_range4 <- function(River_name, First_year, Last_year, Year_impact){
 }
 
 
-#' f_impact5 - Calculates the daily environmental impact of flow regulation (high- and low-flow impact)
+#' Calculates the daily environmental impact of flow regulation (high- and low-flow impact)
 #' @param  First_year First year to consider in the analysis starting on October 1st (e.g.: First_year = 1964)
 #' @param  Last_year First year to consider in the analysis finishing on September 30th (e.g.: Last_year = 2011)
 #' @param  Year_evaluated Year when the environmental impact is evaluated (e.g.: Year_evaluated = 2010)
@@ -396,7 +396,7 @@ f_impact5 <- function(First_year, Last_year,Year_evaluated,Year_impact){
 
 
 
-#' f_plot_impact5 - Plots the daily environmental impact of flow regulation (high- and low-flow impact)
+#' Plots the daily environmental impact of flow regulation (high- and low-flow impact)
 #' @param  River_name Name of the river written as character (e.g.: River_name = "Ebro")
 #' @param  First_year First year to consider in the analysis starting on October 1st (e.g.: First_year = 1964)
 #' @param  Last_year First year to consider in the analysis finishing on September 30th (e.g.: Last_year = 2011)
@@ -573,7 +573,7 @@ f_plot_impact5 <- function(River_name,First_year, Last_year,Year_evaluated, Year
 }
 
 
-#' f_daily_costs6 - Calculates the daily environmental costs of flow regulation
+#' Calculates the daily environmental costs of flow regulation
 #' @param  First_year First year to consider in the analysis starting on October 1st (e.g.: First_year = 1964)
 #' @param  Last_year First year to consider in the analysis finishing on September 30th (e.g.: Last_year = 2011)
 #' @param  Year_evaluated Year when the environmental impact is evaluated (e.g.: Year_evaluated = 2010)
@@ -605,7 +605,7 @@ f_daily_costs6 <- function(First_year, Last_year,Year_evaluated, Year_impact,a_l
 
 
 
-#' f_daily_costs_plot6 - Plots the daily environmental costs of flow regulation
+#' Plots the daily environmental costs of flow regulation
 #' @param  River_name Name of the river written as character (e.g.: River_name = "Ebro")
 #' @param  First_year First year to consider in the analysis starting on October 1st (e.g.: First_year = 1964)
 #' @param  Last_year First year to consider in the analysis finishing on September 30th (e.g.: Last_year = 2011)
@@ -656,7 +656,7 @@ f_daily_costs_plot6 <- function(River_name, First_year, Last_year,Year_evaluated
 
 
 
-#' f_multi_plot_impact5 - Plots the daily environmental impact of flow regulation for multiple years
+#' Plots the daily environmental impact of flow regulation for multiple years
 #' @param  River_name Name of the river written as character (e.g.: River_name = "Ebro")
 #' @param  First_year First year to consider in the analysis starting on October 1st (e.g.: First_year = 1964)
 #' @param  Last_year First year to consider in the analysis finishing on September 30th (e.g.: Last_year = 2011)
@@ -836,7 +836,7 @@ f_multi_plot_impact5 <- function(River_name,First_year, Last_year,Year_evaluated
 
 
 
-#' f_multi_plot_impact7 - Plots the daily environmental impact of flow regulation for multiple years
+#' Plots the daily environmental impact of flow regulation for multiple years
 #' @param  Row Number of rows in the figure to compare multiple years in separated graphs (e.g.:  Row = 2)
 #' @param  Column Number of columns in the figure to compare multiple years in separated graphs (e.g.:  Column = 5)
 #' @param  sp_years A vector specifying the years to be plotted (e.g.:  sp_years = c(1965,1966,1967,1968,1969,2006,2007,2008,2009,2010))

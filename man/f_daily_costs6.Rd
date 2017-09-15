@@ -2,7 +2,7 @@
 % Please edit documentation in R/FlowRegEnvCosts.R
 \name{f_daily_costs6}
 \alias{f_daily_costs6}
-\title{f_daily_costs6 - Calculates the daily environmental costs of flow regulation}
+\title{Calculates the daily environmental costs of flow regulation}
 \usage{
 f_daily_costs6(First_year, Last_year, Year_evaluated, Year_impact, a_low,
   a_high, b_low, b_high)
@@ -28,5 +28,5 @@ f_daily_costs6(First_year, Last_year, Year_evaluated, Year_impact, a_low,
 Calculates the daily environmental costs of flow regulation for a specific year evaluated.
 }
 \description{
-f_daily_costs6 - Calculates the daily environmental costs of flow regulation
+Calculates the daily environmental costs of flow regulation
 }

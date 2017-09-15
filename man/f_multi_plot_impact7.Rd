@@ -2,7 +2,7 @@
 % Please edit documentation in R/FlowRegEnvCosts.R
 \name{f_multi_plot_impact7}
 \alias{f_multi_plot_impact7}
-\title{f_multi_plot_impact7 - Plots the daily environmental impact of flow regulation for multiple years}
+\title{Plots the daily environmental impact of flow regulation for multiple years}
 \usage{
 f_multi_plot_impact7(Row, Column, sp_years, River_name, First_year, Last_year,
   Year_impact)
@@ -26,5 +26,5 @@ f_multi_plot_impact7(Row, Column, sp_years, River_name, First_year, Last_year,
 Plots the daily environmental impact of flow regulation for multiple years.
 }
 \description{
-f_multi_plot_impact7 - Plots the daily environmental impact of flow regulation for multiple years
+Plots the daily environmental impact of flow regulation for multiple years
 }

@@ -2,7 +2,7 @@
 % Please edit documentation in R/FlowRegEnvCosts.R
 \name{f_summary_flow3}
 \alias{f_summary_flow3}
-\title{f_summary_flow3 - Provides a summary of flow data during the pre-impact period}
+\title{Provides a summary of flow data during the pre-impact period}
 \usage{
 f_summary_flow3(First_year, Last_year, Year_impact)
 }
@@ -17,5 +17,5 @@ f_summary_flow3(First_year, Last_year, Year_impact)
 Provides a dataframe on a daily basis of mean, min, p10, p25, median, p75, p90 and max values during the pre-impact period.
 }
 \description{
-f_summary_flow3 - Provides a summary of flow data during the pre-impact period
+Provides a summary of flow data during the pre-impact period
 }

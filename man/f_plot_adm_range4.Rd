@@ -2,7 +2,7 @@
 % Please edit documentation in R/FlowRegEnvCosts.R
 \name{f_plot_adm_range4}
 \alias{f_plot_adm_range4}
-\title{f_plot_adm_range4 - Plots the admissible range of flow variability}
+\title{Plots the admissible range of flow variability}
 \usage{
 f_plot_adm_range4(River_name, First_year, Last_year, Year_impact)
 }
@@ -19,5 +19,5 @@ f_plot_adm_range4(River_name, First_year, Last_year, Year_impact)
 Plots the admissible range of flow variability based on the flow data during the pre-impact period.
 }
 \description{
-f_plot_adm_range4 - Plots the admissible range of flow variability
+Plots the admissible range of flow variability
 }

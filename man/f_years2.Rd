@@ -2,7 +2,7 @@
 % Please edit documentation in R/FlowRegEnvCosts.R
 \name{f_years2}
 \alias{f_years2}
-\title{f_years2 - Sorts the flow data per years - Each year is a column}
+\title{Sorts the flow data per years - Each year is a column}
 \usage{
 f_years2(First_year, Last_year)
 }
@@ -15,5 +15,5 @@ f_years2(First_year, Last_year)
 The transformed dataframe per year is ready for calculations
 }
 \description{
-f_years2 - Sorts the flow data per years - Each year is a column
+Sorts the flow data per years - Each year is a column
 }

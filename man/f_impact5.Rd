@@ -2,7 +2,7 @@
 % Please edit documentation in R/FlowRegEnvCosts.R
 \name{f_impact5}
 \alias{f_impact5}
-\title{f_impact5 - Calculates the daily environmental impact of flow regulation (high- and low-flow impact)}
+\title{Calculates the daily environmental impact of flow regulation (high- and low-flow impact)}
 \usage{
 f_impact5(First_year, Last_year, Year_evaluated, Year_impact)
 }
@@ -19,5 +19,5 @@ f_impact5(First_year, Last_year, Year_evaluated, Year_impact)
 Calculates the daily environmental impact of flow regulation (high- and low-flow impact).
 }
 \description{
-f_impact5 - Calculates the daily environmental impact of flow regulation (high- and low-flow impact)
+Calculates the daily environmental impact of flow regulation (high- and low-flow impact)
 }

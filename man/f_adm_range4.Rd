@@ -2,7 +2,7 @@
 % Please edit documentation in R/FlowRegEnvCosts.R
 \name{f_adm_range4}
 \alias{f_adm_range4}
-\title{f_adm_range4 - Calculates the admissible range of flow variability}
+\title{Calculates the admissible range of flow variability}
 \usage{
 f_adm_range4(First_year, Last_year, Year_impact)
 }
@@ -17,5 +17,5 @@ f_adm_range4(First_year, Last_year, Year_impact)
 Calculates the admissible range of flow variability based on the flow data during the pre-impact period.
 }
 \description{
-f_adm_range4 - Calculates the admissible range of flow variability
+Calculates the admissible range of flow variability
 }

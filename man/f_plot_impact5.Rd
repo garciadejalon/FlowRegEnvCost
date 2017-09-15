@@ -2,7 +2,7 @@
 % Please edit documentation in R/FlowRegEnvCosts.R
 \name{f_plot_impact5}
 \alias{f_plot_impact5}
-\title{f_plot_impact5 - Plots the daily environmental impact of flow regulation (high- and low-flow impact)}
+\title{Plots the daily environmental impact of flow regulation (high- and low-flow impact)}
 \usage{
 f_plot_impact5(River_name, First_year, Last_year, Year_evaluated, Year_impact)
 }
@@ -21,5 +21,5 @@ f_plot_impact5(River_name, First_year, Last_year, Year_evaluated, Year_impact)
 Plots the daily environmental impact of flow regulation (high- and low-flow impact).
 }
 \description{
-f_plot_impact5 - Plots the daily environmental impact of flow regulation (high- and low-flow impact)
+Plots the daily environmental impact of flow regulation (high- and low-flow impact)
 }
