@@ -2,3 +2,9 @@
 ^\.Rproj\.user$
 ^.*\.pdf$
 ^.*\.log$
+^.*\.md$
+^.*\.sh$
+^.*\.git$
+^.*\.csv$
+^.*\.bib$
+^.*\.Rhistory$

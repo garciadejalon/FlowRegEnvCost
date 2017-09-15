@@ -4,9 +4,11 @@
 \alias{structure_date}
 \title{Transforms and reorders the flow data}
 \usage{
-structure_date(S_Day, S_Month, S_Year)
+structure_date(dataframe = "", S_Day, S_Month, S_Year)
 }
 \arguments{
+\item{dataframe}{Data frame with river flow data}
+
 \item{S_Day}{Position in Date string of the first digit of two-digits day}
 
 \item{S_Month}{Position in Date string of the first digits of two-digits month}

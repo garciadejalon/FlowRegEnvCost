@@ -1,3 +1,4 @@
+# data0 <- structure_date (S_Day=1,S_Month=4,S_Year=7)
 roxygen2::roxygenise()
 # symbolic link of extdata when documenting
 # sudo add-apt-repository ppa:anton+/photo-video-apps
