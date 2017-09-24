@@ -1,11 +1,22 @@
 #' Transforms and reorders the flow data
-#' @param  dataframe Data frame with river flow data
+#' @param  dafra Data frame with river flow data
 #' @param  S_Day Position in Date string of the first digit of two-digits day
 #' @param  S_Month Position in Date string of the first digits of two-digits month
 #' @param  S_Year Position in Date string of the first digits of four-digits year
 #' @return The transformed dataframe on a daily basis sohuld now be ready for calculations
+#' @examples 
+#' \dontrun{
+#' if(interactive()){
+#'  #EXAMPLE
+#'  data(flowdata)
+#'  structure_date(df='flowdata',S_Day=1,S_Month=4,S_Year=7)
+#'  }
+#' }
+#' @rdname structure_date
+
 #' @export
-structure_date <-function(dataframe='',S_Day,S_Month,S_Year){
+structure_date <-function(dafra='flowdata',S_Day=1,S_Month=4,S_Year=7){
+  dataframe<-get(dafra)
   Ye <- substr(dataframe$Date, start = S_Year, stop = (S_Year+3))
   Mo <- substr(dataframe$Date, start = S_Month, stop = (S_Month+1))
   Da <- substr(dataframe$Date, start = S_Day, stop = (S_Day+1))
@@ -14,22 +25,26 @@ structure_date <-function(dataframe='',S_Day,S_Month,S_Year){
   Date_real <- seq(as.Date(dataframe$Date[1]), as.Date(dataframe$Date[length(dataframe$Date)]), by="days")
   dataframe_adj <- data.frame(Date=Date_real, Flow=NA)
   dataframe_adj$Flow[which(as.character(Date_real) %in% dataframe$Date)] <- dataframe$Flow[which(dataframe$Date %in% as.character(Date_real))]
-  data0 <<- dataframe_adj
-  #return(data0)
+  fd <<- dataframe_adj
+  #return(fd)
+  print('Results saved as fd')
 }
 
 
 #' Sorts the flow data per years - Each year is a column
+#' @param  dafra Data frame with formatted river flow data resulting from the structure_date function
 #' @param  First_year First year to consider in the analysis starting on October 1st (e.g.: First_year = 1964)
 #' @param  Last_year Last year to consider in the analysis finishing on September 30th (e.g.: Last_year = 2011)
 #' @return The transformed dataframe per year is ready for calculations
 #' @export
-col_per_year <- function(dataframe='data0',First_year,Last_year){
+col_per_year <- function(dafra='fd',First_year=1964,Last_year=2011){
+  fd<-get(dafra)
+  attach(fd)
   First_day <- paste(First_year,"-10-01", sep="")
   Last_day <- paste(Last_year,"-09-30", sep="")
   Date_col <- seq(as.Date("2011-10-01"), as.Date("2012-09-30"), by="days")
   Date <- seq(as.Date(First_day), as.Date(Last_day), by="days")
-  Flow_adj <- subset(dataframe, (Date>=First_day)&(Date<=Last_day), select="Flow")
+  Flow_adj <- subset(fd, (Date>=First_day)&(Date<=Last_day), select="Flow")
   data1 <- data.frame(Date=Date, Flow = Flow_adj)
   ##Analysis of flows
   Years0 <- seq(as.numeric(substr(First_day, start = 1, stop = 4))+1, as.numeric(substr(Last_day, start = 1, stop = 4)))
@@ -48,21 +63,24 @@ col_per_year <- function(dataframe='data0',First_year,Last_year){
   my_mx1 <- replace(my_mx, my_mx<0, NA)
   my_df <<- data.frame(Date=substr(Date_col, start = 6, stop = 11), my_mx1)
   #return(my_df)
+  print('Results saved as my_df')
 }
 
 
 #' Provides a summary of flow data during the pre-impact period
+#' @param  dafra Data frame with formatted river flow data resulting from the col_per_year function
 #' @param  First_year First year to consider in the analysis starting on October 1st (e.g.: First_year = 1964)
 #' @param  Last_year First year to consider in the analysis finishing on September 30th (e.g.: Last_year = 2011)
 #' @param  Year_impact Year when the human impact started (the construction of a dam) (e.g.: Year_impact = 1988)
 #' @return Provides a dataframe on a daily basis of mean, min, p10, p25, median, p75, p90 and max values during the pre-impact period.
 #' @export
-summary_flow <- function(First_year, Last_year, Year_impact){
+summary_flow <- function(dafra='my_df',First_year=1964, Last_year=2011, Year_impact=1988){
+  #fd<-get(dafra)
   First_day <- paste(First_year,"-10-01", sep="")
   Last_day <- paste(Last_year,"-09-30", sep="")
   Years0 <- seq(as.numeric(substr(First_day, start = 1, stop = 4))+1, as.numeric(substr(Last_day, start = 1, stop = 4)))
   Date_col <- seq(as.Date("2011-10-01"), as.Date("2012-09-30"), by="days")
-  my_mx1_0 <- col_per_year(First_year=First_year,Last_year=Last_year)
+  my_mx1_0 <- get(dafra)#col_per_year(First_year=First_year,Last_year=Last_year)
   my_mx1 <- my_mx1_0[,2:ncol(my_mx1_0)]
   ##summary of daily data of flows
   means<- rowMeans(my_mx1, na.rm = TRUE)
@@ -79,25 +97,27 @@ summary_flow <- function(First_year, Last_year, Year_impact){
   daily_summary_ref_years <- t(m)
   cnames <- c("mean", "min", "p10", "p25", "median", "p75", "p90", "max")
   colnames(daily_summary_ref_years) <- cnames
-  daily_summary_ref_years_final <- data.frame(Day =substr(Date_col, start = 6, stop = 11),daily_summary_ref_years)
+  daily_summary_ref_years_final <<- data.frame(Day =substr(Date_col, start = 6, stop = 11),daily_summary_ref_years)
   return(daily_summary_ref_years_final)
+  print('Results saved as daily_summary_ref_years_final')
 }
 
 
 
 #' Calculates the admissible range of flow variability
+#' @param  dafra Data frame with formatted river flow data resulting from the col_per_year function
 #' @param  First_year First year to consider in the analysis starting on October 1st (e.g.: First_year = 1964)
 #' @param  Last_year First year to consider in the analysis finishing on September 30th (e.g.: Last_year = 2011)
 #' @param  Year_impact Year when the human impact started (the construction of a dam) (e.g.: Year_impact = 1988)
 #' @return Calculates the admissible range of flow variability based on the flow data during the pre-impact period.
 #' @export
-adm_range <- function(First_year, Last_year, Year_impact){
+adm_range <- function(dafra='my_df',First_year=1964, Last_year=2011, Year_impact=1988){
   First_day <- paste(First_year,"-10-01", sep="")
   Last_day <- paste(Last_year,"-09-30", sep="")
   Years0 <- seq(as.numeric(substr(First_day, start = 1, stop = 4))+1, as.numeric(substr(Last_day, start = 1, stop = 4)))
-  my_mx1_0 <- col_per_year(First_year=First_year,Last_year=Last_year)
+  my_mx1_0 <- get(dafra)#<- col_per_year(First_year=First_year,Last_year=Last_year)
   my_mx1 <- my_mx1_0[,2:ncol(my_mx1_0)]
-  daily_summary_ref_years_0 <- summary_flow(First_year=First_year,Last_year=Last_year,Year_impact=Year_impact)
+  daily_summary_ref_years_0 <- get('daily_summary_ref_years_final')#summary_flow(First_year=First_year,Last_year=Last_year,Year_impact=Year_impact)
   daily_summary_ref_years <- daily_summary_ref_years_0[,2:ncol(daily_summary_ref_years_0)]
   Date <- seq(as.Date("1999-10-01"), as.Date("2000-09-30"), by="days")
   daily_summary_ref <- cbind(Date, daily_summary_ref_years)
@@ -109,7 +129,7 @@ adm_range <- function(First_year, Last_year, Year_impact){
   #t_one_day_ar   <- array(1:layouts, dim=c(86400,1,366))  # time points of 1day at which the model calculates
   t_one_day <- array(1:layouts, c(t_secs_1_day,1,t_days_1_year)) #8=86400(sec/dia), 1=1(filas), 3=366(dias)
   ## caudal de referencia LOW
-  q_ref_cubic_feet_low  <- subset(daily_summary_ref, select=daily_summary_ref$p10)
+  q_ref_cubic_feet_low  <- subset(daily_summary_ref, select=daily_summary_ref$p10) # ERROR
   q_ref_sin_interp_low <- q_ref_cubic_feet_low[1:t_days_1_year,] # caudal de referencia (m3/s) para 1st of October (1913-1952)
   q_ref_sin_interp22_low <- array(0, c(t_secs_1_day,1,t_days_1_year))
   q_ref_sin_interp22_low[, , t_days_1_year] <- seq(

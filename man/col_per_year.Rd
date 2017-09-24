@@ -4,12 +4,12 @@
 \alias{col_per_year}
 \title{Sorts the flow data per years - Each year is a column}
 \usage{
-col_per_year(First_year, Last_year)
+col_per_year(dataframe = "data0", First_year, Last_year)
 }
 \arguments{
 \item{First_year}{First year to consider in the analysis starting on October 1st (e.g.: First_year = 1964)}
 
-\item{Last_year}{First year to consider in the analysis finishing on September 30th (e.g.: Last_year = 2011)}
+\item{Last_year}{Last year to consider in the analysis finishing on September 30th (e.g.: Last_year = 2011)}
 }
 \value{
 The transformed dataframe per year is ready for calculations

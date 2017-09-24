@@ -4,10 +4,10 @@
 \alias{structure_date}
 \title{Transforms and reorders the flow data}
 \usage{
-structure_date(dataframe = "", S_Day, S_Month, S_Year)
+structure_date(df = "", S_Day, S_Month, S_Year)
 }
 \arguments{
-\item{dataframe}{Data frame with river flow data}
+\item{df}{Data frame with river flow data}
 
 \item{S_Day}{Position in Date string of the first digit of two-digits day}
 
@@ -20,4 +20,12 @@ The transformed dataframe on a daily basis sohuld now be ready for calculations
 }
 \description{
 Transforms and reorders the flow data
+}
+\examples{
+\dontrun{
+if(interactive()){
+ #EXAMPLE
+ structure_date(df='flowdata',S_Day=1,S_Month=4,S_Year=7)
+ }
+}
 }
