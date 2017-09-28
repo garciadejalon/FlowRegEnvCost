@@ -4,7 +4,7 @@
 \alias{adm_range}
 \title{Calculates the admissible range of flow variability}
 \usage{
-adm_range(First_year, Last_year, Year_impact)
+adm_range(First_year = 1964, Last_year = 2011, Year_impact = 1988)
 }
 \arguments{
 \item{First_year}{First year to consider in the analysis starting on October 1st (e.g.: First_year = 1964)}

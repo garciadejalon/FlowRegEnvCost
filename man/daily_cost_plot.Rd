@@ -4,8 +4,9 @@
 \alias{daily_cost_plot}
 \title{Plots the daily environmental costs of flow regulation}
 \usage{
-daily_cost_plot(River_name, First_year, Last_year, Year_evaluated, Year_impact,
-  a_low, a_high, b_low, b_high)
+daily_cost_plot(River_name = "Ebro", First_year = 1964, Last_year = 2011,
+  Year_evaluated = 2010, Year_impact = 1988, a_low = 0.05,
+  a_high = 0.01, b_low = 2, b_high = 2)
 }
 \arguments{
 \item{River_name}{Name of the river written as character (e.g.: River_name = "Ebro")}

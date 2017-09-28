@@ -4,7 +4,7 @@
 \alias{col_per_year}
 \title{Sorts the flow data per years - Each year is a column}
 \usage{
-col_per_year(dataframe = "data0", First_year, Last_year)
+col_per_year(First_year = 1964, Last_year = 2011)
 }
 \arguments{
 \item{First_year}{First year to consider in the analysis starting on October 1st (e.g.: First_year = 1964)}

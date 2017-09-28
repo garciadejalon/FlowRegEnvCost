@@ -4,7 +4,8 @@
 \alias{impact_reg_plot}
 \title{Plots the daily environmental impact of flow regulation (high- and low-flow impact)}
 \usage{
-impact_reg_plot(River_name, First_year, Last_year, Year_evaluated, Year_impact)
+impact_reg_plot(River_name = "Ebro", First_year = 1964, Last_year = 2011,
+  Year_evaluated = 2010, Year_impact = 1988)
 }
 \arguments{
 \item{River_name}{Name of the river written as character (e.g.: River_name = "Ebro")}

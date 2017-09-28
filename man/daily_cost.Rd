@@ -4,8 +4,9 @@
 \alias{daily_cost}
 \title{Calculates the daily environmental costs of flow regulation}
 \usage{
-daily_cost(First_year, Last_year, Year_evaluated, Year_impact, a_low, a_high,
-  b_low, b_high)
+daily_cost(First_year = 1964, Last_year = 2011, Year_evaluated = 2010,
+  Year_impact = 1988, a_low = 0.05, a_high = 0.01, b_low = 2,
+  b_high = 2)
 }
 \arguments{
 \item{First_year}{First year to consider in the analysis starting on October 1st (e.g.: First_year = 1964)}

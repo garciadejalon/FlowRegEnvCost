@@ -4,8 +4,9 @@
 \alias{impact_reg_multi_plot}
 \title{Plots the daily environmental impact of flow regulation for multiple years}
 \usage{
-impact_reg_multi_plot(Row, Column, sp_years, River_name, First_year, Last_year,
-  Year_impact)
+impact_reg_multi_plot(Row = 2, Column = 5, sp_years = c(1965, 1966, 1967,
+  1968, 1969, 2006, 2007, 2008, 2009, 2010), River_name = "Ebro",
+  First_year = 1964, Last_year = 2011, Year_impact = 1988)
 }
 \arguments{
 \item{Row}{Number of rows in the figure to compare multiple years in separated graphs (e.g.:  Row = 2)}

@@ -4,7 +4,8 @@
 \alias{impact_reg}
 \title{Calculates the daily environmental impact of flow regulation (high- and low-flow impact)}
 \usage{
-impact_reg(First_year, Last_year, Year_evaluated, Year_impact)
+impact_reg(First_year = 1964, Last_year = 2011, Year_evaluated = 2010,
+  Year_impact = 1988)
 }
 \arguments{
 \item{First_year}{First year to consider in the analysis starting on October 1st (e.g.: First_year = 1964)}

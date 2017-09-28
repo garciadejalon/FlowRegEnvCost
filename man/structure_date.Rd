@@ -4,19 +4,19 @@
 \alias{structure_date}
 \title{Transforms and reorders the flow data}
 \usage{
-structure_date(df = "", S_Day, S_Month, S_Year)
+structure_date(dafra = "flowdata", S_Day = 1, S_Month = 4, S_Year = 7)
 }
 \arguments{
-\item{df}{Data frame with river flow data}
+\item{dafra}{Data frame with river flow data (default value is empty)}
 
-\item{S_Day}{Position in Date string of the first digit of two-digits day}
+\item{S_Day}{Position in Date string of the first digit of two-digits day (default value is 1)}
 
-\item{S_Month}{Position in Date string of the first digits of two-digits month}
+\item{S_Month}{Position in Date string of the first digits of two-digits month (default value is 4)}
 
-\item{S_Year}{Position in Date string of the first digits of four-digits year}
+\item{S_Year}{Position in Date string of the first digits of four-digits year (default value is 7)}
 }
 \value{
-The transformed dataframe on a daily basis sohuld now be ready for calculations
+A transformed data frame on a daily basis ready for further calculations
 }
 \description{
 Transforms and reorders the flow data
@@ -25,6 +25,7 @@ Transforms and reorders the flow data
 \dontrun{
 if(interactive()){
  #EXAMPLE
+ data(flowdata)
  structure_date(df='flowdata',S_Day=1,S_Month=4,S_Year=7)
  }
 }
