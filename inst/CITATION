@@ -1,4 +1,4 @@
-citHeader("To cite package 'deSolve' in publications use:")
+citHeader("To cite package 'FlowRegEnvCost' in publications use:")
 
 citEntry(entry="Article",
 title="The Environmental Costs of Water Flow Regulation: an Innovative Approach Based on the 'Polluter Pays' Principle",
