@@ -5,7 +5,7 @@
 \title{Plots the daily environmental impact of flow regulation for multiple years}
 \usage{
 impact_reg_multi_plot(Row = 2, Column = 5, sp_years = c(1965, 1966, 1967,
-  1968, 1969, 2006, 2007, 2008, 2009, 2010), River_name = "Ebro",
+  1968, 1969, 2006, 2007, 2008, 2009, 2010), River_name = "Esla",
   First_year = 1964, Last_year = 2011, Year_impact = 1988)
 }
 \arguments{
@@ -15,7 +15,7 @@ impact_reg_multi_plot(Row = 2, Column = 5, sp_years = c(1965, 1966, 1967,
 
 \item{sp_years}{A vector specifying the years to be plotted (e.g.:  sp_years = c(1965,1966,1967,1968,1969,2006,2007,2008,2009,2010))}
 
-\item{River_name}{Name of the river written as character (e.g.: River_name = "Ebro")}
+\item{River_name}{Name of the river written as character (e.g.: River_name = "Esla")}
 
 \item{First_year}{First year to consider in the analysis starting on October 1st (e.g.: First_year = 1964)}
 
@@ -28,4 +28,7 @@ Plots the daily environmental impact of flow regulation for multiple years.
 }
 \description{
 Plots the daily environmental impact of flow regulation for multiple years
+}
+\examples{
+impact_reg_multi_plot(Row = 2,Column = 5, sp_years = c(1965,1966,1967,1968,1969,2006,2007,2008,2009,2010), River_name = "Esla", First_year=1964, Last_year=2011,Year_impact=1988)
 }

@@ -19,3 +19,6 @@ Calculates the admissible range of flow variability based on the flow data durin
 \description{
 Calculates the admissible range of flow variability
 }
+\examples{
+adm_range(First_year=1964, Last_year=2011, Year_impact=1988)
+}

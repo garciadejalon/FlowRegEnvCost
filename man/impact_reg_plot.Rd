@@ -4,11 +4,11 @@
 \alias{impact_reg_plot}
 \title{Plots the daily environmental impact of flow regulation (high- and low-flow impact)}
 \usage{
-impact_reg_plot(River_name = "Ebro", First_year = 1964, Last_year = 2011,
+impact_reg_plot(River_name = "Esla", First_year = 1964, Last_year = 2011,
   Year_evaluated = 2010, Year_impact = 1988)
 }
 \arguments{
-\item{River_name}{Name of the river written as character (e.g.: River_name = "Ebro")}
+\item{River_name}{Name of the river written as character (e.g.: River_name = "Esla")}
 
 \item{First_year}{First year to consider in the analysis starting on October 1st (e.g.: First_year = 1964)}
 
@@ -23,4 +23,7 @@ Plots the daily environmental impact of flow regulation (high- and low-flow impa
 }
 \description{
 Plots the daily environmental impact of flow regulation (high- and low-flow impact)
+}
+\examples{
+impact_reg_plot(River_name = "Esla", First_year=1964, Last_year=2011,Year_evaluated=2010,Year_impact=1988)
 }

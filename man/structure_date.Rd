@@ -22,11 +22,5 @@ A transformed data frame on a daily basis ready for further calculations
 Transforms and reorders the flow data
 }
 \examples{
-\dontrun{
-if(interactive()){
- #EXAMPLE
- data(flowdata)
- structure_date(df='flowdata',S_Day=1,S_Month=4,S_Year=7)
- }
-}
+structure_date(dafra='flowdata',S_Day=1,S_Month=4,S_Year=7)
 }

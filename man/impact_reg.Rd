@@ -22,3 +22,6 @@ Calculates the daily environmental impact of flow regulation (high- and low-flow
 \description{
 Calculates the daily environmental impact of flow regulation (high- and low-flow impact)
 }
+\examples{
+impact_reg(First_year=1964, Last_year=2011,Year_evaluated=2010,Year_impact=1988)
+}
