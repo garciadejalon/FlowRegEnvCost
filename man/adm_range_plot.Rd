@@ -4,8 +4,7 @@
 \alias{adm_range_plot}
 \title{Plots the admissible range of flow variability}
 \usage{
-adm_range_plot(River_name = "Esla", First_year = 1964, Last_year = 2011,
-  Year_impact = 1988)
+adm_range_plot(River_name, First_year, Last_year, Year_impact)
 }
 \arguments{
 \item{River_name}{Name of the river as character (e.g.: River_name = "Esla")}
@@ -23,5 +22,6 @@ Plots the admissible range of flow variability based on the flow data during the
 Plots the admissible range of flow variability
 }
 \examples{
+data(flowdata)
 adm_range_plot(River_name = "Esla", First_year=1964, Last_year=2011, Year_impact=1988)
 }

@@ -19,5 +19,5 @@ issn="1573-1650",
 doi="10.1007/s11269-017-1663-0",
 url="https://doi.org/10.1007/s11269-017-1663-0",
 
-textVersion =  paste("xxx")
+textVersion =  paste("García de Jalón S, González del Tánago M, Alonso C, García de Jalón D (2017) The environmental costs of water flow regulation: an innovative approach based on the 'polluter pays' principle. Water Resources Management 31 (9): 2809–2822. DOI: 10.1007/s11269-017-1663-0.")
 )

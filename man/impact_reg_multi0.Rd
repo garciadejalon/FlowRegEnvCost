@@ -4,9 +4,8 @@
 \alias{impact_reg_multi0}
 \title{Plots the daily environmental impact of flow regulation for multiple years}
 \usage{
-impact_reg_multi0(River_name = "Esla", First_year = 1964,
-  Last_year = 2011, Year_evaluated = 2010, Year_impact = 1988,
-  x_coef = 0.8)
+impact_reg_multi0(River_name, First_year, Last_year, Year_evaluated,
+  Year_impact, x_coef)
 }
 \arguments{
 \item{River_name}{Name of the river written as character (e.g.: River_name = "Esla")}
@@ -26,7 +25,4 @@ Plots the daily environmental impact of flow regulation for multiple years.
 }
 \description{
 Plots the daily environmental impact of flow regulation for multiple years
-}
-\examples{
-impact_reg_multi0(River_name = "Esla", First_year=1964, Last_year=2011,Year_evaluated=2010,Year_impact=1988,x_coef = 0.8)
 }

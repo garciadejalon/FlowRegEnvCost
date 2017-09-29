@@ -4,7 +4,7 @@
 \alias{summary_flow}
 \title{Provides a summary of flow data during the pre-impact period}
 \usage{
-summary_flow(First_year = 1964, Last_year = 2011, Year_impact = 1988)
+summary_flow(First_year, Last_year, Year_impact)
 }
 \arguments{
 \item{First_year}{First year to consider in the analysis starting on October 1st (e.g.: First_year = 1964)}
@@ -20,5 +20,6 @@ Provides a dataframe on a daily basis of mean, min, p10, p25, median, p75, p90 a
 Provides a summary of flow data during the pre-impact period
 }
 \examples{
+data(flowdata)
 summary_flow(First_year=1964, Last_year=2011, Year_impact=1988)
 }

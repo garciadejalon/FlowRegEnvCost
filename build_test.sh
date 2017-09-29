@@ -3,7 +3,7 @@ library(sinew)
 library(FlowRegEnvCost)
 
 roxygen2::roxygenise()
-devtools::check(build_args = '--as-cran')
+devtools::check(build_args = '--as-cran',manual=T)
 # symbolic link of extdata when documenting
 # sudo add-apt-repository ppa:anton+/photo-video-apps
 #R CMD build --compact-vignettes='gs+qpdf' FlowRegEnvCost
