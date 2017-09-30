@@ -10,8 +10,9 @@
 #' structure_date(dafra='flowdata',S_Day=1,S_Month=4,S_Year=7)
 #' @export
 structure_date <-function(dafra='flowdata',S_Day=1,S_Month=4,S_Year=7){
-	if(!is.element(dafra,objects(pos=1))){stop("No river flow data named 'flowdata' was found in the workspace. Use data(flowdata) to create an example dataset or provide one with the correct format and name. See help(structure_date) for more info.")} # ADD FORMAT CHECKING
+	if(!is.element(dafra,objects(pos=1))){stop("No river flow data named 'flowdata' was found in the workspace. Use data(flowdata) to create an example dataset or provide one with the correct format and name. See help(structure_date) for more info.")} 
   dataframe<-get(dafra)
+	if(names(dataframe)[1]!='Date' | names(dataframe)[2]!='Flow'){stop("Input data does not meet the required format. See help(flowdata) as an example.")}
   Ye <- substr(dataframe$Date, start = S_Year, stop = (S_Year+3))
   Mo <- substr(dataframe$Date, start = S_Month, stop = (S_Month+1))
   Da <- substr(dataframe$Date, start = S_Day, stop = (S_Day+1))
