@@ -708,14 +708,6 @@ daily_cost_plot <- function(River_name, First_year, Last_year,Year_evaluated,Yea
 
 
 
-#' Plots the daily environmental impact of flow regulation for multiple years
-#' @param  River_name Name of the river written as character (e.g.: River_name = "Esla")
-#' @param  First_year First year to consider in the analysis starting on October 1st (e.g.: First_year = 1964)
-#' @param  Last_year First year to consider in the analysis finishing on September 30th (e.g.: Last_year = 2011)
-#' @param  Year_evaluated Year when the environmental impact is evaluated (e.g.: Year_evaluated = 2010)
-#' @param  Year_impact Year when the human impact started (the construction of a dam) (e.g.: Year_impact = 1988)
-#' @param  x_coef A coeficient to change the font size in the graphs proportionally to the number of graphs plotted (e.g.: x_coef = 0.8)
-#' @return Plots the daily environmental impact of flow regulation for multiple years.
 impact_reg_multi0 <- function(River_name, First_year, Last_year, Year_evaluated, Year_impact, x_coef){
   # He quitado @export porque creo que esta función no debería ser compartida @Silvestre
   First_day <- paste(First_year,"-10-01", sep="")
