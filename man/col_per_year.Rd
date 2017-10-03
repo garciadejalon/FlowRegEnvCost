@@ -18,6 +18,7 @@ The transformed dataframe per year is ready for calculations
 Sorts the flow data per years - Each year is a column
 }
 \examples{
+\dontrun{
 data(flowdata)
-col_per_year(First_year=1964,Last_year=2011)
+col_per_year(First_year=1964,Last_year=2011)}
 }

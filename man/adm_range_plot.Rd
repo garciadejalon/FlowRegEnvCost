@@ -22,6 +22,7 @@ Plots the admissible range of flow variability based on the flow data during the
 Plots the admissible range of flow variability
 }
 \examples{
+\dontrun{
 data(flowdata)
-adm_range_plot(River_name = "Esla", First_year=1964, Last_year=2011, Year_impact=1988)
+adm_range_plot(River_name = "Esla", First_year=1964, Last_year=2011, Year_impact=1988)}
 }

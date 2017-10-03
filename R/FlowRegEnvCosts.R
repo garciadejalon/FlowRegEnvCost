@@ -6,8 +6,9 @@
 #' @return A transformed data frame on a daily basis ready for further calculations
 #' @rdname structure_date
 #' @examples
+#' \dontrun{
 #' data(flowdata)
-#' structure_date(dafra='flowdata',S_Day=1,S_Month=4,S_Year=7)
+#' structure_date(dafra='flowdata',S_Day=1,S_Month=4,S_Year=7)}
 #' @export
 structure_date <-function(dafra='flowdata',S_Day=1,S_Month=4,S_Year=7){
 	if(!is.element(dafra,objects(pos=1))){stop("No river flow data named 'flowdata' was found in the workspace. Use data(flowdata) to create an example dataset or provide one with the correct format and name. See help(structure_date) for more info.")} 
@@ -33,8 +34,9 @@ structure_date <-function(dafra='flowdata',S_Day=1,S_Month=4,S_Year=7){
 #' @param  Last_year Last year to consider in the analysis finishing on September 30th (e.g.: Last_year = 2011)
 #' @return The transformed dataframe per year is ready for calculations
 #' @examples
+#' \dontrun{
 #' data(flowdata)
-#' col_per_year(First_year=1964,Last_year=2011)
+#' col_per_year(First_year=1964,Last_year=2011)}
 #' @export
 col_per_year <- function(First_year,Last_year){
   # "First_year=1964,Last_year=2011" serían valores para el ejemplo. Creo que no deberían ser valores por defecto @Silvestre
@@ -74,8 +76,9 @@ col_per_year <- function(First_year,Last_year){
 #' @param  Year_impact Year when the human impact started (the construction of a dam) (e.g.: Year_impact = 1988)
 #' @return Provides a dataframe on a daily basis of mean, min, p10, p25, median, p75, p90 and max values during the pre-impact period.
 #' @examples
+#' \dontrun{
 #' data(flowdata)
-#' summary_flow(First_year=1964, Last_year=2011, Year_impact=1988)
+#' summary_flow(First_year=1964, Last_year=2011, Year_impact=1988)}
 #' @export
 summary_flow <- function(First_year, Last_year, Year_impact){
   #fd<-get(dafra)
@@ -113,8 +116,9 @@ summary_flow <- function(First_year, Last_year, Year_impact){
 #' @param  Year_impact Year when the human impact started (the construction of a dam) (e.g.: Year_impact = 1988)
 #' @return Calculates the admissible range of flow variability based on the flow data during the pre-impact period.
 #' @examples
+#' \dontrun{
 #' data(flowdata)
-#' adm_range(First_year=1964, Last_year=2011, Year_impact=1988)
+#' adm_range(First_year=1964, Last_year=2011, Year_impact=1988)}
 #' @export
 adm_range <- function(First_year, Last_year, Year_impact){
   First_day <- paste(First_year,"-10-01", sep="")
@@ -184,8 +188,9 @@ adm_range <- function(First_year, Last_year, Year_impact){
 #' @param  Year_impact Year when the human impact started (the construction of a dam) (e.g.: Year_impact = 1988)
 #' @return Plots the admissible range of flow variability based on the flow data during the pre-impact period.
 #' @examples
+#' \dontrun{
 #' data(flowdata)
-#' adm_range_plot(River_name = "Esla", First_year=1964, Last_year=2011, Year_impact=1988)
+#' adm_range_plot(River_name = "Esla", First_year=1964, Last_year=2011, Year_impact=1988)}
 #' @export
 #' @import "zoo"
 #' @importFrom "graphics" "axis" "legend" "lines" "mtext" "par" "plot" "polygon"
@@ -284,8 +289,9 @@ adm_range_plot <- function(River_name, First_year, Last_year, Year_impact){
 #' @param  Year_impact Year when the human impact started (the construction of a dam) (e.g.: Year_impact = 1988)
 #' @return Calculates the daily environmental impact of flow regulation (high- and low-flow impact).
 #' @examples
+#' \dontrun{
 #' data(flowdata)
-#' impact_reg(First_year=1964, Last_year=2011,Year_evaluated=2010,Year_impact=1988)
+#' impact_reg(First_year=1964, Last_year=2011,Year_evaluated=2010,Year_impact=1988)}
 #' @export
 impact_reg <- function(First_year, Last_year,Year_evaluated,Year_impact){
   First_day <- paste(First_year,"-10-01", sep="")
@@ -443,9 +449,10 @@ impact_reg <- function(First_year, Last_year,Year_evaluated,Year_impact){
 #' @param  Year_impact Year when the human impact started (the construction of a dam) (e.g.: Year_impact = 1988)
 #' @return Plots the daily environmental impact of flow regulation (high- and low-flow impact).
 #' @examples
+#' \dontrun{
 #' data(flowdata)
 #' impact_reg_plot(River_name = "Esla", First_year=1964,
-#' Last_year=2011, Year_evaluated=2010, Year_impact=1988)
+#' Last_year=2011, Year_evaluated=2010, Year_impact=1988)}
 #' @export
 impact_reg_plot <- function(River_name, First_year, Last_year,Year_evaluated,Year_impact){
   First_day <- paste(First_year,"-10-01", sep="")
@@ -627,9 +634,10 @@ impact_reg_plot <- function(River_name, First_year, Last_year,Year_evaluated,Yea
 #' @param  b_high Coefficient b of High-flow impact of function ku (e.g.: b_high = 2)
 #' @return Calculates the daily environmental costs of flow regulation for a specific year evaluated.
 #' @examples
+#' \dontrun{
 #' data(flowdata)
 #' daily_cost(First_year=1964, Last_year=2011,Year_evaluated=2010,
-#' Year_impact=1988, a_low = 0.05, a_high = 0.01, b_low = 2, b_high = 2)
+#' Year_impact=1988, a_low = 0.05, a_high = 0.01, b_low = 2, b_high = 2)}
 #' @export
 daily_cost <- function(First_year, Last_year, Year_evaluated, Year_impact, a_low, a_high,b_low, b_high){
   First_day <- paste(First_year,"-10-01", sep="")
@@ -664,10 +672,11 @@ daily_cost <- function(First_year, Last_year, Year_evaluated, Year_impact, a_low
 #' @param  b_high Coefficient b of High-flow impact of function ku (e.g.: b_high = 2)
 #' @return Plots the daily environmental costs of flow regulation for a specific year evaluated.
 #' @examples
+#' \dontrun{
 #' data(flowdata)
 #' daily_cost_plot(River_name = "Esla", First_year=1964, Last_year=2011,
 #' Year_evaluated=2010, Year_impact=1988, a_low = 0.05, a_high = 0.01,
-#' b_low = 2, b_high = 2)
+#' b_low = 2, b_high = 2)}
 #' @export
 daily_cost_plot <- function(River_name, First_year, Last_year,Year_evaluated,Year_impact,a_low, a_high, b_low, b_high){
   First_day <- paste(First_year,"-10-01", sep="")
@@ -890,11 +899,12 @@ impact_reg_multi0 <- function(River_name, First_year, Last_year, Year_evaluated,
 #' @param  Year_impact Year when the human impact started (the construction of a dam) (e.g.: Year_impact = 1988)
 #' @return Plots the daily environmental impact of flow regulation for multiple years.
 #' @examples
+#' \dontrun{
 #' data(flowdata)
 #' impact_reg_multi_plot(Row = 2,Column = 5,
 #' sp_years = c(1965,1966,1967,1968,1969,2006,2007,2008,2009,2010),
 #' River_name = "Esla", First_year=1964, Last_year=2011,
-#' Year_impact=1988)
+#' Year_impact=1988)}
 #' @export
 impact_reg_multi_plot <- function(Row, Column, sp_years, River_name, First_year, Last_year,Year_impact) {
   First_day <- paste(First_year,"-10-01", sep="")

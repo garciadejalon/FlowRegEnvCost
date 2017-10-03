@@ -24,7 +24,8 @@ Plots the daily environmental impact of flow regulation (high- and low-flow impa
 Plots the daily environmental impact of flow regulation (high- and low-flow impact)
 }
 \examples{
+\dontrun{
 data(flowdata)
 impact_reg_plot(River_name = "Esla", First_year=1964,
-Last_year=2011, Year_evaluated=2010, Year_impact=1988)
+Last_year=2011, Year_evaluated=2010, Year_impact=1988)}
 }

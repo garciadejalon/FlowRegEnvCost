@@ -33,8 +33,9 @@ Plots the daily environmental costs of flow regulation for a specific year evalu
 Plots the daily environmental costs of flow regulation
 }
 \examples{
+\dontrun{
 data(flowdata)
 daily_cost_plot(River_name = "Esla", First_year=1964, Last_year=2011,
 Year_evaluated=2010, Year_impact=1988, a_low = 0.05, a_high = 0.01,
-b_low = 2, b_high = 2)
+b_low = 2, b_high = 2)}
 }
