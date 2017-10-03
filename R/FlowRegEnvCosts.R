@@ -903,6 +903,6 @@ impact_reg_multi_plot <- function(Row, Column, sp_years, River_name, First_year,
   par(mfrow=c(Row, Column))
   x_coef <- -0.144* log(n_years) + 0.971
   for(i in 1:length(sp_years)){
-    FlowRegEnvCost:::impact_reg_multi0(River_name = River_name,First_year=First_year, Last_year=Last_year,Year_evaluated=sp_years[i], Year_impact=Year_impact, x_coef=x_coef)
+    impact_reg_multi0(River_name = River_name,First_year=First_year, Last_year=Last_year,Year_evaluated=sp_years[i], Year_impact=Year_impact, x_coef=x_coef)
   }
 }
