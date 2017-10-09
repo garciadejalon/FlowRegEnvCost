@@ -29,10 +29,9 @@ Plots the daily environmental impact of flow regulation for multiple years.
 Plots the daily environmental impact of flow regulation for multiple years
 }
 \examples{
-\dontrun{
 data(flowdata)
-impact_reg_multi_plot(Row = 2,Column = 5,
-sp_years = c(1965,1966,1967,1968,1969,2006,2007,2008,2009,2010),
+impact_reg_multi_plot(Row = 1,Column = 3,
+sp_years = c(1965,2006,2010),
 River_name = "Esla", First_year=1964, Last_year=2011,
-Year_impact=1988)}
+Year_impact=1988)
 }

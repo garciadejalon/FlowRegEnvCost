@@ -20,7 +20,6 @@ Calculates the admissible range of flow variability based on the flow data durin
 Calculates the admissible range of flow variability
 }
 \examples{
-\dontrun{
 data(flowdata)
-adm_range(First_year=1964, Last_year=2011, Year_impact=1988)}
+adm_range(First_year=1964, Last_year=2011, Year_impact=1988)
 }
