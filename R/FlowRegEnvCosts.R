@@ -16,11 +16,15 @@ structure_date <-function(dafra='flowdata',S_Day=1,S_Month=4,S_Year=7){
   Ye <- substr(dataframe$Date, start = S_Year, stop = (S_Year+3))
   Mo <- substr(dataframe$Date, start = S_Month, stop = (S_Month+1))
   Da <- substr(dataframe$Date, start = S_Day, stop = (S_Day+1))
-  Date_adjusted <- paste(Ye,"-",Mo,"-",Da, sep="")
+  Date_adjusted <- paste(Da,"/",Mo,"/",Ye, sep="")
   dataframe$Date <-Date_adjusted
-  Date_real <- seq(as.Date(dataframe$Date[1]), as.Date(dataframe$Date[length(dataframe$Date)]), by="days")
+  Date_real0 <- seq(as.Date(dataframe$Date[1],"%d/%m/%Y"), as.Date(dataframe$Date[length(dataframe$Date)],"%d/%m/%Y"), by="days")
+  Ye0 <- substr(Date_real0, start = 1, stop = 4)
+  Mo0 <- substr(Date_real0, start = 6, stop = 7)
+  Da0 <- substr(Date_real0, start = 9, stop = 10)
+  Date_real <- paste(Da0,"/",Mo0,"/",Ye0, sep="")
   dataframe_adj <- data.frame(Date=Date_real, Flow=NA)
-  dataframe_adj$Flow[which(as.character(Date_real) %in% dataframe$Date)] <- dataframe$Flow[which(dataframe$Date %in% as.character(Date_real))]
+  dataframe_adj$Flow[which(Date_real %in% dataframe$Date)] <- dataframe$Flow[which(dataframe$Date %in% Date_real)]
   fd <- dataframe_adj
   return(fd)
   #print('Original data frame successfully formated and saved as fd')
