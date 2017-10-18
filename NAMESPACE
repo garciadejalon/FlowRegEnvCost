@@ -2,13 +2,11 @@
 
 export(adm_range)
 export(adm_range_plot)
-export(col_per_year)
 export(daily_cost)
 export(daily_cost_plot)
 export(impact_reg)
 export(impact_reg_multi_plot)
 export(impact_reg_plot)
-export(structure_date)
 export(summary_flow)
 import("zoo")
 importFrom("graphics","axis")
