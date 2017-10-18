@@ -1,7 +1,7 @@
 Package: FlowRegEnvCost
 Type: Package
 Title: The Environmental Costs of Flow Regulation
-Version: 0.1.0
+Version: 0.1.1
 Author: Silvestre Garcia de Jalon; Javier Martinez-Lopez; Marta Gonzalez del Tanago;  Carlos Alonso; Diego Garcia de Jalon
 Maintainer: Javier Martinez-Lopez <javi.martinez.lopez@gmail.com>
 Description: An application to calculate the daily environmental costs of river flow regulation by dams based on García de Jalon et al. 2017 <doi:10.1007/s11269-017-1663-0>.

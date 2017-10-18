@@ -1,16 +1,6 @@
-#' Transforms and reorders the flow data
-#' @param  dafra Data frame with river flow data (default value is empty)
-#' @param  S_Day Position in Date string of the first digit of two-digits day (default value is 1)
-#' @param  S_Month Position in Date string of the first digits of two-digits month (default value is 4)
-#' @param  S_Year Position in Date string of the first digits of four-digits year (default value is 7)
-#' @return A transformed data frame on a daily basis ready for further calculations
-#' @rdname structure_date
-#' @examples
-#' data(flowdata)
-#' structure_date(dafra='flowdata',S_Day=1,S_Month=4,S_Year=7)
-#' @export
+
 structure_date <-function(dafra='flowdata',S_Day=1,S_Month=4,S_Year=7){
-	if(!is.element(dafra,objects(pos=1))){stop("No river flow data named 'flowdata' was found in the workspace. Use data(flowdata) to create an example dataset or provide one with the correct format and name. See help(structure_date) for more info.")} 
+	if(!is.element(dafra,objects(pos=1))){stop("No river flow data named 'flowdata' was found in the workspace. Use data(flowdata) to create an example dataset or provide one with the correct format and name. See help(flowdata) for more info. Date format must be dd/mm/yyyy")} 
   dataframe<-get(dafra)
 	if(names(dataframe)[1]!='Date' | names(dataframe)[2]!='Flow'){stop("Input data does not meet the required format. See help(flowdata) as an example.")}
   Ye <- substr(dataframe$Date, start = S_Year, stop = (S_Year+3))
@@ -31,15 +21,6 @@ structure_date <-function(dafra='flowdata',S_Day=1,S_Month=4,S_Year=7){
   #print(head(fd))
 }
 
-
-#' Sorts the flow data per years - Each year is a column
-#' @param  First_year First year to consider in the analysis starting on October 1st (e.g.: First_year = 1964)
-#' @param  Last_year Last year to consider in the analysis finishing on September 30th (e.g.: Last_year = 2011)
-#' @return The transformed dataframe per year is ready for calculations
-#' @examples
-#' data(flowdata)
-#' col_per_year(First_year=1964,Last_year=2011)
-#' @export
 col_per_year <- function(First_year,Last_year){
   # "First_year=1964,Last_year=2011" serían valores para el ejemplo. Creo que no deberían ser valores por defecto @Silvestre
   fd<-structure_date()#get(dafra)
@@ -67,7 +48,7 @@ col_per_year <- function(First_year,Last_year){
   my_mx1 <- replace(my_mx, my_mx<0, NA)
   my_df <- data.frame(Date=substr(Date_col, start = 6, stop = 11), my_mx1)
   return(my_df)
-  print('Original data frame rearranged and saved as my_df')
+  #print('Original data frame rearranged and saved as my_df')
   print(head(my_df))
 }
 
